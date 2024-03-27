@@ -1,0 +1,24 @@
+import pandas as pd
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import gzip
+import pickle
+
+# Load the data from the original pickle file
+with open('flight_rf.pkl', 'rb') as f_in:
+    data = pickle.load(f_in)
+
+# Compress and save the data to a gzip-compressed file
+with gzip.open('flight_rf.pkl.gz', 'wb') as f_out:
+    pickle.dump(data, f_out)
+
+
+import gzip
+import pickle
+
+with gzip.open('flight_rf.pkl.gz', 'rb') as f:
+    data = pickle.load(f)
+
+print(data)
